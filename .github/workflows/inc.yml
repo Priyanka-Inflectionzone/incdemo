@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Auto Increment Semver Action
-        uses: Priyanka-Inflectionzone/auto-semver-action@1.0.5
+        uses: Priyanka-Inflectionzone/auto-semver-action@main
         id: versioning
         with:
           releaseType: patch 
