@@ -20,6 +20,11 @@ jobs:
       - name: Next Release Number
         run: echo ${{ steps.versioning.outputs.version }} 
         
+      - name: Define destination
+        run: DEST_DIR = 'Public-' /
+             DEST_DIR+= ${{ steps.versioning.outputs.version }} /
+             echo DEST_DIR
+        
       - name: checking out
         uses: actions/checkout@master
       
@@ -33,5 +38,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-south-1' 
 #           SOURCE_DIR: 'Public' 
-          DEST_DIR: 'Public' 
+#          DEST_DIR: DEST_DIR
 
