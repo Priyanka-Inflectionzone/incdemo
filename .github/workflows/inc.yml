@@ -1,7 +1,8 @@
 name: Creation of Release Version
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
 
 jobs:
   build:
