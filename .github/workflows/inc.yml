@@ -20,11 +20,11 @@ jobs:
       - name: Next Release Number
         run: echo ${{ steps.versioning.outputs.version }} 
         
-      - name: Declare destination
-        run: declare -g DEST_DIR="Public "
+#       - name: Declare destination
+#         run: declare -g DEST_DIR="Public "
         
       - name: Add version number
-        run: sh -c "DEST_DIR+= ${{ steps.versioning.outputs.version }}" 
+        run: sh -c "DEST_DIR= 'Public ' /DEST_DIR+= ${{ steps.versioning.outputs.version }}" 
               
       - name: checking out
         uses: actions/checkout@master
