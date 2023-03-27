@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     name: Create Release  
-    if: github.event.push == true
     runs-on: ubuntu-latest
     steps:
       - name: Auto Increment Semver Action
