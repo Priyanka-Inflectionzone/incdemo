@@ -14,8 +14,8 @@ jobs:
       id: version   
       uses: vinodhraj/Bump-N-Tag-Version@master
       with:
-        file_name: './VERSION'
-        tag_version: "true"
+        file_name: '../Public/VERSION'
+        tag_version: "false"
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         
