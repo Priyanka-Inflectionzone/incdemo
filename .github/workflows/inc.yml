@@ -15,7 +15,7 @@ jobs:
         id: versioning
         with:
           releaseType: patch 
-          incrementPerCommit: true
+          incrementPerCommit: false
           github_token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Next Release Number
