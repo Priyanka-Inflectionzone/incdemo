@@ -31,5 +31,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-south-1' 
           SOURCE_DIR: 'Public' 
-          DEST_DIR: 'Public'+ version: ${{ steps.versioning.outputs.version }} 
+          DEST_DIR: 'Public' 
 
