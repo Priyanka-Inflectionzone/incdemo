@@ -23,8 +23,8 @@ jobs:
 #       - name: Declare destination
 #         run: declare -g DEST_DIR="Public "
         
-      - name: Add version number
-        run: sh -c "DEST_DIR='Public '", "DEST_DIR+= ${{ steps.versioning.outputs.version }}", "echo DEST_DIR", "export DEST_DIR" 
+#       - name: Add version number
+        
               
       - name: checking out
         uses: actions/checkout@master
@@ -33,6 +33,7 @@ jobs:
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
+          run: sh -c "DEST_DIR='Public '", "DEST_DIR+= ${{ steps.versioning.outputs.version }}", "echo DEST_DIR", "export DEST_DIR" 
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
