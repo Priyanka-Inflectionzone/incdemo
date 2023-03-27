@@ -20,8 +20,10 @@ jobs:
       - name: Next Release Number
         run: echo ${{ steps.versioning.outputs.version }} 
         
+      - name: checking out
+        uses: actions/checkout@master
+      
       - name: sync to s3
-#         uses: actions/checkout@master
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
@@ -30,6 +32,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-south-1' 
-          SOURCE_DIR: 'Public' 
+#           SOURCE_DIR: 'Public' 
           DEST_DIR: 'Public' 
 
