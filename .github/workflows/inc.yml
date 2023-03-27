@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     name: Create Release  
-    if: github.event.pull_request.merged == true
+    if: github.event.push == true
     runs-on: ubuntu-latest
     steps:
       - name: Taking the Latest Release Tag number
