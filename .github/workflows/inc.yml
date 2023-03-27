@@ -21,7 +21,7 @@ jobs:
         run: echo ${{ steps.versioning.outputs.version }} 
         
       - name: Define destination
-        run: declare DEST_DIR = 'Public-' /
+        run: declare DEST_DIR 'Public-' /
              DEST_DIR+= ${{ steps.versioning.outputs.version }} /
              echo DEST_DIR
         
