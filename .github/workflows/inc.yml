@@ -21,9 +21,9 @@ jobs:
         run: echo ${{ steps.versioning.outputs.version }} 
         
       - name: Define destination
-        run: declare DEST_DIR 'Public-' /
-             DEST_DIR+= ${{ steps.versioning.outputs.version }} /
-             echo DEST_DIR
+        run: declare DEST_DIR="Public "
+            /DEST_DIR+= ${{ steps.versioning.outputs.version }} 
+            /echo DEST_DIR
         
       - name: checking out
         uses: actions/checkout@master
