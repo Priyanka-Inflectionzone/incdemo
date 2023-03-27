@@ -24,7 +24,7 @@ jobs:
 #         run: declare -g DEST_DIR="Public "
         
       - name: Add version number
-        run: sh -c "DEST_DIR='Public '", "DEST_DIR+= ${{ steps.versioning.outputs.version }}, echo DEST_DIR, export DEST_DIR" 
+        run: sh -c "DEST_DIR='Public '", "DEST_DIR+= ${{ steps.versioning.outputs.version }}", "echo DEST_DIR", "export DEST_DIR" 
               
       - name: checking out
         uses: actions/checkout@master
@@ -39,5 +39,5 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-south-1' 
 #           SOURCE_DIR: 'Public' 
-#           DEST_DIR: ${{DEST_DIR}}
+          DEST_DIR: ${{DEST_DIR}}
 
