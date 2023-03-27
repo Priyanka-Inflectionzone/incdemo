@@ -1,5 +1,8 @@
 name: App Version Actions
-on: [push, pull_request]  # Recommended to use either of one event
+on: 
+  push:
+    branches:
+      main
 
 jobs:
   Version-check:
