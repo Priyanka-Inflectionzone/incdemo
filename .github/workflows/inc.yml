@@ -1,33 +1,52 @@
-name: Sync to AWS S3
-on:
-  push:
-    branches: 
-      - main
+name: App Version Actions
+on: [push, pull_request]  # Recommended to use either of one event
 
 jobs:
-  deploy:  
+  Version-check:
     runs-on: ubuntu-latest
+    name: Bump-N-Tag Version
     steps:
-      - name: Auto Increment Semver Action
-        uses:  MCKanpolat/auto-semver-action@1.0.5
-        id: versioning
-        with:
-          releaseType: patch 
-          incrementPerCommit: true
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: Next Release Number
-        run: echo ${{ steps.versioning.outputs.version }} 
-              
-      - uses: actions/checkout@master
-      - uses: Priyanka-Inflectionzone/s3-sync-action@master
-        with:
-          args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
+    - uses: actions/checkout@master
+    - name: Increment version
+      id: version   
+      uses: vinodhraj/Bump-N-Tag-Version@master
+      with:
+        file_name: './VERSION'
+        tag_version: "true"
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        
+    - uses: actions/checkout@master
+    - uses: Priyanka-Inflectionzone/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
           
-        env:
+      env:
            AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            AWS_REGION: 'ap-south-1' 
            DEST_DIR: 'Public'
+# name: Sync to AWS S3
+# on:
+#   push:
+#     branches: 
+#       - main
+
+# jobs:
+#   deploy:  
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Auto Increment Semver Action
+#         uses:  MCKanpolat/auto-semver-action@1.0.5
+#         id: versioning
+#         with:
+#           releaseType: patch 
+#           incrementPerCommit: true
+#           github_token: ${{ secrets.ACCESS_TOKEN }}
+
+#       - name: Next Release Number
+#         run: echo ${{ steps.versioning.outputs.version }} 
+              
+     
 
